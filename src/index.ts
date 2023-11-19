@@ -13,7 +13,6 @@ export async function start(): Promise<void> {
     options: [{
       type: ApplicationCommandOptionType.Boolean,
       name: "inline",
-      displayName: "Inline code",
       description: "Wow, inline code?",
       required: false
     }],
