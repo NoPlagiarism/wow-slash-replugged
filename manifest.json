@@ -1,20 +1,19 @@
 {
-  "id": "dev.replugged.PluginTemplate",
-  "name": "Plugin Template",
-  "description": "A plugin template",
+  "id": "xyz.noplagi.slashes",
+  "name": "Slash Command Examples",
+  "description": "Some examples for Replugged",
   "author": {
-    "name": "replugged",
-    "discordID": "1000992611840049192",
-    "github": "replugged-org"
+    "name": "NoPlagiarism",
+    "discordID": "358920224008830977",
+    "github": "NoPlagiarism"
   },
   "version": "1.0.0",
   "updater": {
     "type": "github",
-    "id": "replugged-org/plugin-template"
+    "id": "NoPlagiarism/wow-slash-replugged"
   },
-  "license": "MIT",
+  "license": "WTFPL",
   "type": "replugged-plugin",
   "renderer": "src/index.ts",
-  "source": "https://github.com/replugged-org/plugin-template",
-  "image": ["https://i.imgur.com/14CNs3a.png?CHANGE-THIS-URL"]
+  "source": "https://github.com/NoPlagiarism/wow-slash-replugged"
 }
