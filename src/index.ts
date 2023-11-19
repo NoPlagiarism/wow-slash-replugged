@@ -1,30 +1,32 @@
-import { Injector, Logger, webpack } from "replugged";
+import { Injector, Logger } from "replugged";
 import { ApplicationCommandOptionType } from "replugged/types";
-import { randChoice } from "./utils"
-import { simpleText, simpleCode, getDiscordCode, simpleEmbeds } from "./values"
+import { randChoice } from "./utils";
+import { getDiscordCode, simpleCode, simpleEmbeds, simpleText } from "./values";
 
 const inject = new Injector();
 const logger = Logger.plugin("xyz.noplagi.slashes");
 
-export async function start(): Promise<void> {
+export function start(): void {
   inject.utils.registerSlashCommand({
     name: "wow-slash-simple",
     description: "Wow, it just prints text (or inline code)!",
-    options: [{
-      type: ApplicationCommandOptionType.Boolean,
-      name: "inline",
-      description: "Wow, inline code?",
-      required: false
-    }],
+    options: [
+      {
+        type: ApplicationCommandOptionType.Boolean,
+        name: "inline",
+        description: "Wow, inline code?",
+        required: false,
+      },
+    ],
     executor(interaction) {
       try {
-        const inline = interaction.getValue("inline", false)
+        const inline = interaction.getValue("inline", false);
         let rand = randChoice(simpleText);
-        if (inline) rand = `\`${  rand  }\``
+        if (inline) rand = `\`${rand}\``;
         return {
           send: false,
-          result: rand
-        }
+          result: rand,
+        };
       } catch (err) {
         logger.error(err as string);
         return {
@@ -39,18 +41,18 @@ export async function start(): Promise<void> {
         };
       }
     },
-  })
+  });
 
   inject.utils.registerSlashCommand({
     name: "wow-slash-code",
     description: "Wow, it just prints code!",
-    executor(interaction) {
+    executor(_) {
       try {
         let rand = randChoice(simpleCode);
         return {
           send: false,
-          result: getDiscordCode(rand)
-        }
+          result: getDiscordCode(rand),
+        };
       } catch (err) {
         logger.error(err as string);
         return {
@@ -65,18 +67,18 @@ export async function start(): Promise<void> {
         };
       }
     },
-  })
+  });
 
   inject.utils.registerSlashCommand({
     name: "wow-slash-embed",
     description: "Wow, it just prints embed!",
-    executor(interaction) {
+    executor(_) {
       try {
         let rand = randChoice(simpleEmbeds);
         return {
           send: false,
-          embeds: [rand, ]
-        }
+          embeds: [rand],
+        };
       } catch (err) {
         logger.error(err as string);
         return {
@@ -91,7 +93,7 @@ export async function start(): Promise<void> {
         };
       }
     },
-  })
+  });
 }
 
 export function stop(): void {
